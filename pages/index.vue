@@ -74,6 +74,12 @@ const testRequest = async () => {
         Create Error
       </button>
       <Icon name="uil:github" color="black"/>
+      <h1 class="scss">scss</h1>
       <n-button @click="testRequest">Test Request</n-button>
     </div>
 </template>
+<style scoped lang="scss">
+.scss{
+  color:#f00
+}
+</style>
