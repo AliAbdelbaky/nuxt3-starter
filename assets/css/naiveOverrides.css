@@ -1,0 +1,54 @@
+.v-binder-follower-container {
+  direction: ltr !important
+}
+.n-input-wrapper{
+  gap: 5px;
+}
+.n-tag{
+  gap: 5px !important;
+  align-items: center !important;
+}
+.n-notification-container .n-notification .n-notification__avatar{
+  position: unset !important;
+  padding-top: 0.9rem;
+  height: 100%;
+}
+.n-notification-container .n-notification.n-notification--show-avatar .n-notification-main{
+  margin-left: 5px !important;
+}
+.n-modal-mask{
+  backdrop-filter: blur(2px) brightness(0.9);
+}
+.n-dialog__action{
+  gap: 5px !important;
+}
+.n-button{
+  gap: 5px !important;
+  margin: 0;
+}
+
+html[dir="rtl"] .n-base-suffix{
+  right: unset;
+  left:10px;
+}
+html[dir="rtl"] .n-base-selection-tags{
+  padding: 3px 12px 0 26px !important
+}
+html[dir="rtl"] .n-base-select-option {
+  direction: rtl !important;
+  padding-left: calc(var(--n-option-padding-left) + 20px);
+  padding-right: 10px;
+}
+html[dir="rtl"] .n-base-select-option .n-base-icon{
+  right: unset;
+  left: calc(var(--n-option-padding-right) - 4px);
+}
+html[dir="rtl"] .n-dialog__close{
+  left: 0;
+  right: unset !important;
+  margin: 21px 0 0 20px !important;
+}
+html[dir="rtl"] .n-dialog__title{
+  padding-left: calc(var(--n-close-size) + 6px) !important;
+  padding-right: 0 !important;
+}
