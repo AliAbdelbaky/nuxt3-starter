@@ -2,6 +2,7 @@
 import {useImage} from '@vueuse/core'
 import {ref} from 'vue'
 import {NButton} from 'naive-ui'
+import themeConfig, {_lightThemeVars} from './_theme.config'
 
 const {locale, setLocale} = useI18n()
 
@@ -15,6 +16,12 @@ function change() {
   const color: string = colors[Math.floor(Math.random() * colors.length)]
   imageOptions.value.src = `https://place-hold.it/300x200/${color}`
 }
+const classes = computed(()=>themeConfig(_lightThemeVars))
+useHead({
+  htmlAttrs: {
+    style:classes,
+  },
+})
 </script>
 <template>
   <div class="tw-min-h-screen tw-flex tw-flex-col tw-gap-4 tw-items-center tw-justify-center">
@@ -30,7 +37,7 @@ function change() {
     <div v-else-if="error" class="text-red">
       Failed
     </div>
-    <img v-else :src="imageOptions.src" class="tw-w-[300px] tw-h-[200px]" alt="vue use plugin" >
+    <img v-else :src="imageOptions.src" class="tw-w-[300px] tw-h-[200px]" alt="vue use plugin">
 
     <button @click="change">
       Change
@@ -40,6 +47,9 @@ function change() {
       Create Error
     </button>
 
-    <Icon name="uil:github" color="black" />
+    <Icon name="uil:github" color="black"/>
+    <pre class="tw-max-h-[500px] tw-overflow-x-hidden">
+      {{classes}}
+    </pre>
   </div>
 </template>
