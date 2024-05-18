@@ -1,4 +1,4 @@
-# Nuxt 3 Starter with [Pinia, Tailwind, Naive-ui]
+# Nuxt 3 Starter with [Pinia, Tailwind, Naive-ui, I18n]
 
 Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
 
