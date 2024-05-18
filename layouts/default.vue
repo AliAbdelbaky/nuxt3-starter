@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <main class="tw-min-h-[70vh]">
+  <main class="tw-min-h-screen">
     <slot/>
   </main>
 </template>

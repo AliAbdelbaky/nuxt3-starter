@@ -6,7 +6,7 @@ const {data} = await useFetch('/api/token', {headers})
 </script>
 
 <template>
-  <main class="tw-min-h-[70vh]">
+  <main class="tw-min-h-screen">
     <slot/>
     {{data}}
   </main>

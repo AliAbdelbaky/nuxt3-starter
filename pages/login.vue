@@ -1,11 +1,13 @@
 <script setup lang="ts">
+import MainComp from '~/components/auth/index.vue'
+
 definePageMeta({
   layout: 'auth',
 })
 </script>
 
 <template>
-<h1>login page</h1>
+  <MainComp/>
 </template>
 
 <style scoped>
