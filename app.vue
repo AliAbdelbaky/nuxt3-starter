@@ -3,9 +3,10 @@ import {useImage} from '@vueuse/core'
 import {ref} from 'vue'
 import {NButton} from 'naive-ui'
 import themeConfig, {_lightThemeVars} from './_theme.config'
+import useI18nHandler from '~/composables/core/useI18nHandler'
 
-const {locale, setLocale} = useI18n()
-
+const {set_lang, lang_cookie, html_attrs} = useI18nHandler()
+set_lang(lang_cookie.value)
 
 const imageOptions = ref({src: 'https://place-hold.it/300x200'})
 const colors = ['fff', '000', '5f0caa']
@@ -16,10 +17,11 @@ function change() {
   const color: string = colors[Math.floor(Math.random() * colors.length)]
   imageOptions.value.src = `https://place-hold.it/300x200/${color}`
 }
-const classes = computed(()=>themeConfig(_lightThemeVars))
+
+const classes = computed(() => themeConfig(_lightThemeVars))
 useHead({
   htmlAttrs: {
-    style:classes,
+    style: classes,
   },
 })
 </script>
@@ -28,7 +30,11 @@ useHead({
     <!--    <NuxtWelcome />-->
     <h2 class="tw-underline">Hello from Tailwind</h2>
     <p class="tw-text-red-500">{{ $t('welcome') }}</p>
-    <n-button @click="setLocale( locale === 'en' ?'ar' :'en')">{{ locale === 'en' ? 'Arabic' : ' English' }}</n-button>
+    <n-button @click="set_lang( lang_cookie === 'en' ?'ar' :'en')">{{
+        lang_cookie === 'en' ? 'Arabic' : ' English'
+      }}
+      {{ html_attrs }}
+    </n-button>
 
     <span v-if="isLoading">Loading</span>
     <div v-if="isLoading" class="tw-w-[300px] tw-h-[200px] tw-animate-pulse tw-bg-gray-500/5 tw-p-2">
@@ -49,7 +55,7 @@ useHead({
 
     <Icon name="uil:github" color="black"/>
     <pre class="tw-max-h-[500px] tw-overflow-x-hidden">
-      {{classes}}
+      {{ classes }}
     </pre>
   </div>
 </template>
