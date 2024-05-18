@@ -1,7 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
     devtools: {enabled: true},
-    modules: ['nuxtjs-naive-ui', '@nuxtjs/tailwindcss', "@nuxtjs/i18n", "@vueuse/nuxt", "nuxt-icon"],
+    modules: ['nuxtjs-naive-ui', '@nuxtjs/tailwindcss', "@nuxtjs/i18n", "@vueuse/nuxt", "nuxt-icon",'@sidebase/nuxt-auth'],
     css: ['~~/assets/css/main.css'],
     tailwindcss: {
         cssPath: false,
@@ -28,5 +28,11 @@ export default defineNuxtConfig({
             }
         ],
         defaultLocale: 'en'
+    },
+    runtimeConfig: {
+        public: {
+            BASE_URL: process.env.PROD_BASE_URL,
+            API_SECRET: process.env.API_SECRET || 'no secret',
+        },
     },
 })
