@@ -27,10 +27,11 @@ const valid_url = (endpoint: string, BASE_URL: string) => {
 }
 export default function () {
     const RUNTIME_CONFIG = useRuntimeConfig();
-
-    const BASE_URL = process.env.BASE_URL || 'your base url here'
+    const BASE_URL = RUNTIME_CONFIG.public.BASE_URL || 'your base url here'
+    const DEVICE_TYPE = RUNTIME_CONFIG.public.API_SECRET + ''
     const LANG_COOKIE = useCookie<Lang>("lang");
     const AUTH_COOKIE = useCookie<string>("userToken");
+
     const DEFAULT_HEADERS: HeadersInit = {
         "Accept": "application/json",
         "Content-Type": "application/json",
@@ -38,7 +39,7 @@ export default function () {
         "Access-Control-Allow-Credentials": "true",
         "Credentials": "true",
         "Accept-Language": LANG_COOKIE.value || 'en',
-        "Device-Type": RUNTIME_CONFIG.public.API_SECRET + '',
+        "Device-Type": DEVICE_TYPE,
         "Authorization": AUTH_COOKIE.value && `Bearer ${AUTH_COOKIE.value}`
     }
 
