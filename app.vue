@@ -14,9 +14,13 @@ import {NButton} from 'naive-ui'
 import themeConfig, {_lightThemeVars} from './_theme.config'
 import useI18nHandler from '~/composables/core/useI18nHandler'
 import useNThemeHandler from "~/composables/core/useNThemeHandler";
+import useRequestHandler from "~/composables/core/useRequestHandler";
 
 const {set_lang, lang_cookie, html_attrs} = useI18nHandler()
 const {theme_overrides} = useNThemeHandler()
+const {fireRequest} = useRequestHandler()
+
+
 set_lang(lang_cookie.value)
 
 const imageOptions = ref({src: 'https://place-hold.it/300x200'})
@@ -34,7 +38,10 @@ const classes = computed(() => themeConfig(_lightThemeVars))
 const is_dev_env = computed(() => process.env.NODE_ENV === 'development')
 const process_client = computed(() => import.meta.client)
 
-
+const testRequest = async () => {
+  const data = await fireRequest('https://jsonplaceholder.typicode.com/posts')
+  console.log(data)
+}
 useHead({
   htmlAttrs: {
     style: classes,
@@ -80,6 +87,7 @@ useHead({
       <pre class="tw-max-h-[500px] tw-overflow-x-hidden">
       {{ classes }}
     </pre>
+      <n-button @click="testRequest">Test Request</n-button>
     </div>
   </n-config-provider>
 </template>
