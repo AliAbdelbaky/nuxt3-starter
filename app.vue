@@ -6,6 +6,10 @@ import {
   enUS,
   NConfigProvider,
   NThemeEditor,
+  NNotificationProvider,
+  createDiscreteApi,
+  type NotificationType
+
 } from "naive-ui";
 
 import {useImage} from '@vueuse/core'
@@ -15,10 +19,12 @@ import themeConfig, {_lightThemeVars} from './_theme.config'
 import useI18nHandler from '~/composables/core/useI18nHandler'
 import useNThemeHandler from "~/composables/core/useNThemeHandler";
 import useRequestHandler from "~/composables/core/useRequestHandler";
+import useNotificationHandler from "~/composables/core/useNotificationHandler";
 
 const {set_lang, lang_cookie, html_attrs} = useI18nHandler()
 const {theme_overrides} = useNThemeHandler()
 const {fireRequest} = useRequestHandler()
+const {notify} = useNotificationHandler()
 
 
 set_lang(lang_cookie.value)
@@ -42,14 +48,16 @@ const testRequest = async () => {
   const data = await fireRequest('https://jsonplaceholder.typicode.com/posts')
   console.log(data)
 }
+
+
 useHead({
   htmlAttrs: {
     style: classes,
   },
 })
+
 </script>
 <template>
-
   <n-config-provider
       :date-locale="lang_cookie==='en' ?dateEnUS:dateArDZ"
       :locale="lang_cookie==='en'?enUS : arDZ"
@@ -58,6 +66,20 @@ useHead({
     <client-only v-if="is_dev_env">
       <n-theme-editor/>
     </client-only>
+    <n-space>
+      <n-button @click="notify('info','hello')">
+        Info
+      </n-button>
+      <n-button @click="notify('success','hello')">
+        Success
+      </n-button>
+      <n-button @click="notify('warning','hello')">
+        Warning
+      </n-button>
+      <n-button @click="notify('error','hello')">
+        Error
+      </n-button>
+    </n-space>
     <div class="tw-min-h-screen tw-flex tw-flex-col tw-gap-4 tw-items-center tw-justify-center">
       <h2 class="tw-underline">Hello from Tailwind</h2>
       <p class="tw-text-red-500">{{ $t('welcome') }}</p>
