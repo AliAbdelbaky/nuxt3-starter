@@ -1,7 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
     devtools: {enabled: true},
-    modules: ['nuxtjs-naive-ui', '@nuxtjs/tailwindcss', "@nuxtjs/i18n", "@vueuse/nuxt"],
+    modules: ['nuxtjs-naive-ui', '@nuxtjs/tailwindcss', "@nuxtjs/i18n", "@vueuse/nuxt","nuxt-icon"],
     css: ['~~/assets/css/main.css'],
     tailwindcss: {
         cssPath: false,

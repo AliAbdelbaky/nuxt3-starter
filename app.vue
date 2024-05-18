@@ -39,5 +39,7 @@ function change() {
     <button @click="imageOptions.src = ''">
       Create Error
     </button>
+
+    <Icon name="uil:github" color="black" />
   </div>
 </template>
