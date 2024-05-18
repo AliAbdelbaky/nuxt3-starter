@@ -1,8 +1,8 @@
-import {getServerSession, getToken} from "#auth";
+import {getToken} from "#auth";
 
 export default defineEventHandler(async event => {
-  const token = await getToken({event})
+  // console.log('here', token)
 
-  setCookie(event, 'userToken', token?.sub)
-  return token
+  // setCookie(event, 'userToken', token?.sub)
+  return await getToken({event})
 })
