@@ -5,8 +5,8 @@ export default function () {
   const loading = ref(false)
   const errorMsg = ref<string | null>(null)
   const formValues = ref({
-    email: null,
-    password: null
+    email: 'aliabdelbaqy@velents.com',
+    password: '12345678'
   })
   const {signIn} = useAuth()
   const {notify, getErrorMsg} = useNotificationHandler()

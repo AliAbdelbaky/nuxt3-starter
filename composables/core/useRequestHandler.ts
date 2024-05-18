@@ -31,6 +31,7 @@ export default function () {
     const DEVICE_TYPE = RUNTIME_CONFIG.public.API_SECRET + ''
     const LANG_COOKIE = useCookie<Lang>("lang");
     const AUTH_COOKIE = useCookie<string>("userToken");
+    console.log({BASE_URL, AUTH_COOKIE:AUTH_COOKIE.value})
 
     const DEFAULT_HEADERS: HeadersInit = {
         "Accept": "application/json",
