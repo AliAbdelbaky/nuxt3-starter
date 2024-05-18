@@ -1,7 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
     devtools: {enabled: true},
-    modules: ['nuxtjs-naive-ui', '@nuxtjs/tailwindcss', "@nuxtjs/i18n", "@vueuse/nuxt", "nuxt-icon",'@sidebase/nuxt-auth','@pinia/nuxt'],
+    modules: ['nuxtjs-naive-ui', '@nuxtjs/tailwindcss', "@nuxtjs/i18n", "@vueuse/nuxt", "nuxt-icon", '@sidebase/nuxt-auth', '@pinia/nuxt'],
     css: ['~~/assets/css/main.css'],
     tailwindcss: {
         cssPath: false,
@@ -35,4 +35,9 @@ export default defineNuxtConfig({
             API_SECRET: process.env.API_SECRET || 'no secret',
         },
     },
+    postcss: {
+        plugins: {
+            'postcss-nested': {}
+        }
+    }
 })
