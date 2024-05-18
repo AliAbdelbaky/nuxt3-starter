@@ -19,16 +19,13 @@ const {theme_overrides} = useNThemeHandler()
 set_lang(lang_cookie.value)
 
 
-
-const classes = computed(() => themeConfig(_lightThemeVars))
-
 const is_dev_env = computed(() => process.env.NODE_ENV === 'development')
 
 
 
 useHead({
   htmlAttrs: {
-    style: classes,
+    style: themeConfig(_lightThemeVars),
   },
 })
 
