@@ -1,7 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
     devtools: {enabled: true},
-    modules: ['nuxtjs-naive-ui', '@nuxtjs/tailwindcss', "@nuxtjs/i18n", "@vueuse/nuxt","nuxt-icon"],
+    modules: ['nuxtjs-naive-ui', '@nuxtjs/tailwindcss', "@nuxtjs/i18n", "@vueuse/nuxt", "nuxt-icon"],
     css: ['~~/assets/css/main.css'],
     tailwindcss: {
         cssPath: false,
@@ -27,13 +27,6 @@ export default defineNuxtConfig({
                 file: './i18n/ar.json'
             }
         ],
-        defaultLocale: 'en',
-        // vueI18n: {
-        //     fallbackLocale: 'en',
-        //     messages: {
-        //         en: require('./i18n/en.json'),
-        //         es: require('./i18n/ar.json')
-        //     }
-        // }
+        defaultLocale: 'en'
     },
 })
