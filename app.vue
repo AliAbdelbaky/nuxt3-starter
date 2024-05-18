@@ -5,5 +5,6 @@ import {NButton} from 'naive-ui'
   <div>
     <!--    <NuxtWelcome />-->
     <n-button>Default</n-button>
+    <h2 class="tw-underline">Hello from Tailwind</h2>
   </div>
 </template>
