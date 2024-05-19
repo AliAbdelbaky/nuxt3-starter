@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import {NButton} from 'naive-ui'
-import {useUserStore} from "~/stores/user";
-const {logout} = useUserStore()
+import useUserHandler from "~/composables/auth/useUserHandler";
+
+const {logout} = useUserHandler()
 
 definePageMeta({
   layout: 'dashboard'

@@ -48,14 +48,24 @@ export default defineNuxtPlugin((nuxtApp) => {
         "Authorization": AUTH_COOKIE.value && `Bearer ${AUTH_COOKIE.value}`
     }
     const handleErrors = async (error: ApiError) => {
-        console.log(error.statusCode);
         if (error.statusCode === 401) {
-            notify('error', `${error.message}, Session expired`)
-            await logout()
+            notify({
+                type: 'error',
+                title: 'Unauthorized',
+                content: 'You are not authorized to access this resource'
+            })
+            return await logout()
+        }
+        if(error.statusCode > 400){
+            notify({
+                type: 'error',
+                title: error.message,
+                description: error.url
+            })
         }
     }
 
-    async function api_provider<TType>(endpoint: string, options?: RequestInit | null,queries?:Record<any,any>): Promise<TType> {
+    async function api_provider<TType>(endpoint: string, options?: RequestInit | null, queries?: Record<any, any>): Promise<TType> {
 
         if (process.env.NODE_ENV === 'development') {
             console.log(`%cMaking request to: ${endpoint}`, "color:white;background-color:#333;padding:5px 10px;border-radius:6px;margin:20px 0px");
@@ -69,7 +79,7 @@ export default defineNuxtPlugin((nuxtApp) => {
                 ...options?.headers
             }
         }
-        if(queries){
+        if (queries) {
             const urlParams = new URLSearchParams(queries)
             url = `${url}?${urlParams}`
         }
@@ -81,7 +91,11 @@ export default defineNuxtPlugin((nuxtApp) => {
             await handleErrors(error)
             throw new Error(error.message)
         }
-        notify('success', `Request successful ${endpoint}`)
+        notify({
+            type: 'success',
+            title: `${endpoint}`,
+            content: 'Request was successful'
+        })
         return response.json();
     }
 
