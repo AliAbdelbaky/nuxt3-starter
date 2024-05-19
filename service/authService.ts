@@ -1,8 +1,7 @@
-import useRequestHandler from "~/composables/core/useRequestHandler";
-
 
 export const login = async (payload: any) => {
-    const response = await useRequestHandler().fireRequest('auth/recruiter/login', {
+     const {$api_provider} = useNuxtApp()
+    const response = await $api_provider('auth/recruiter/login', {
         method: 'post',
         body: payload
     });
@@ -10,6 +9,7 @@ export const login = async (payload: any) => {
 };
 
 export const fetchUser = async () => {
-    const response = await useRequestHandler().fireRequest('users/profile');
+     const {$api_provider} = useNuxtApp()
+    const response = await $api_provider('users/profile');
     return response.data;
 };

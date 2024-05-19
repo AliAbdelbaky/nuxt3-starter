@@ -1,4 +1,16 @@
+import useUserHandler from "~/composables/auth/useUserHandler";
+import useNotificationHandler from "~/composables/core/useNotificationHandler";
+
 type Lang = 'ar' | 'en'
+const valid_url = (endpoint: string, BASE_URL: string) => {
+    if (endpoint.startsWith('http') || endpoint.startsWith('https')) {
+        return endpoint
+    }
+    if (endpoint.startsWith('/') && BASE_URL.endsWith('/')) {
+        return BASE_URL + endpoint.slice(1)
+    }
+    return BASE_URL + endpoint
+}
 
 class ApiError extends Error {
     name: string;
@@ -16,22 +28,14 @@ class ApiError extends Error {
 
 }
 
-const valid_url = (endpoint: string, BASE_URL: string) => {
-    if (endpoint.startsWith('http') || endpoint.startsWith('https')) {
-        return endpoint
-    }
-    if (endpoint.startsWith('/') && BASE_URL.endsWith('/')) {
-        return BASE_URL + endpoint.slice(1)
-    }
-    return BASE_URL + endpoint
-}
-export default function () {
-    const RUNTIME_CONFIG = useRuntimeConfig();
-    const BASE_URL = RUNTIME_CONFIG.public.BASE_URL || 'your base url here'
-    const DEVICE_TYPE = RUNTIME_CONFIG.public.API_SECRET + ''
+export default defineNuxtPlugin((nuxtApp) => {
+    const {logout} = useUserHandler()
+    const {notify} = useNotificationHandler('top-left')
+    const BASE_URL = nuxtApp.$config.public.BASE_URL || 'your base url here'
+    const DEVICE_TYPE = nuxtApp.$config.public.API_SECRET + ''
     const LANG_COOKIE = useCookie<Lang>("lang");
     const AUTH_COOKIE = useCookie<string>("userToken");
-    console.log({BASE_URL, AUTH_COOKIE:AUTH_COOKIE.value})
+    console.log({BASE_URL, AUTH_COOKIE: AUTH_COOKIE.value})
 
     const DEFAULT_HEADERS: HeadersInit = {
         "Accept": "application/json",
@@ -43,18 +47,20 @@ export default function () {
         "Device-Type": DEVICE_TYPE,
         "Authorization": AUTH_COOKIE.value && `Bearer ${AUTH_COOKIE.value}`
     }
-
-
-
-    const handleErrors = (error: ApiError) => {
+    const handleErrors = async (error: ApiError) => {
         console.log(error.statusCode);
+        if (error.statusCode === 401) {
+            notify('error', `${error.message}, Session expired`)
+            await logout()
+        }
     }
 
-    const fireRequest = async (endpoint: string, options?: RequestInit) => {
+    async function api_provider<TType>(endpoint: string, options?: RequestInit | null,queries?:Record<any,any>): Promise<TType> {
+
         if (process.env.NODE_ENV === 'development') {
             console.log(`%cMaking request to: ${endpoint}`, "color:white;background-color:#333;padding:5px 10px;border-radius:6px;margin:20px 0px");
         }
-        const url = valid_url(endpoint, BASE_URL);
+        let url = valid_url(endpoint, BASE_URL);
 
         const transformed_options: RequestInit = {
             ...options,
@@ -63,16 +69,26 @@ export default function () {
                 ...options?.headers
             }
         }
+        if(queries){
+            const urlParams = new URLSearchParams(queries)
+            url = `${url}?${urlParams}`
+        }
 
         const response = await fetch(url, transformed_options);
-        console.log({response})
+        // console.log({response})
         if (!response.ok) {
             const error = new ApiError(response)
-            handleErrors(error)
+            await handleErrors(error)
             throw new Error(error.message)
         }
+        notify('success', `Request successful ${endpoint}`)
         return response.json();
     }
 
-    return {fireRequest};
-}
+
+    return {
+        provide: {
+            api_provider
+        }
+    }
+})

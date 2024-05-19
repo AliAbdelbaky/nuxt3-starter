@@ -7,11 +7,10 @@ import {
 import {useImage} from '@vueuse/core'
 import {ref} from 'vue'
 import useI18nHandler from '~/composables/core/useI18nHandler'
-import useRequestHandler from "~/composables/core/useRequestHandler";
 import useNotificationHandler from "~/composables/core/useNotificationHandler";
 
 const {set_lang, lang_cookie, html_attrs} = useI18nHandler()
-const {fireRequest} = useRequestHandler()
+const {$api_provider} = useNuxtApp()
 const {notify} = useNotificationHandler()
 
 
@@ -29,7 +28,7 @@ function change() {
 
 
 const testRequest = async () => {
-  const data = await fireRequest('https://jsonplaceholder.typicode.com/posts')
+  const data = await $api_provider('https://jsonplaceholder.typicode.com/posts')
   console.log(data)
 }
 </script>
