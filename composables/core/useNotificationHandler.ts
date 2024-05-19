@@ -1,7 +1,7 @@
 import useNThemeHandler from "~/composables/core/useNThemeHandler";
 import {
     createDiscreteApi,
-    type NotificationType,
+    type NotificationOptions,
     type NotificationPlacement
 
 } from "naive-ui";
@@ -15,10 +15,11 @@ export default function (placement?: NotificationPlacement) {
             notificationProviderProps: {placement: placement || 'top-right'}
         }
     )
-    const notify = (type: NotificationType, message: string) => {
-        notification[type]({
-            title: message,
-            content: message
+    const notify = (payload: NotificationOptions) => {
+        notification.create({
+            ...payload,
+            duration: 2500,
+            keepAliveOnHover: true
         })
     }
     const getErrorMsg = (error: any) => {

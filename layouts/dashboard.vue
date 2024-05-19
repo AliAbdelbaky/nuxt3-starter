@@ -1,22 +1,22 @@
 <script setup lang="ts">
-import {useUserStore} from '~/stores/user'
+import useUserHandler from "~/composables/auth/useUserHandler";
 
-const userStore = useUserStore()
+const {setAuth, tokenCookie,user} = useUserHandler()
+
 const headers = useRequestHeaders(['cookie']) as HeadersInit
 await useFetch('/api/token', {headers}).then((res) => {
-  const token = res.data.value?.sub
-  userStore.tokenCookie = token
-  console.log({token})
+  tokenCookie.value = res.data.value?.sub
+  console.log(res.data.value)
   if (import.meta.client) {
-    userStore.setAuth()
+    setAuth()
   }
-
 })
 </script>
 
 <template>
   <main class="tw-min-h-screen">
     <slot/>
+    {{ user}}
 <!--    {{ data }}-->
   </main>
 </template>
