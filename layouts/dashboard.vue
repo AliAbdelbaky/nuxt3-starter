@@ -6,7 +6,9 @@ const {setAuth, tokenCookie,user} = useUserHandler()
 const headers = useRequestHeaders(['cookie']) as HeadersInit
 await useFetch('/api/token', {headers}).then((res) => {
   tokenCookie.value = res.data.value?.sub
-  console.log(res.data.value)
+  if (import.meta.client) {
+    console.log(res.data.value)
+  }
   if (import.meta.client) {
     setAuth()
   }
@@ -17,7 +19,6 @@ await useFetch('/api/token', {headers}).then((res) => {
   <main class="tw-min-h-screen">
     <slot/>
     {{ user}}
-<!--    {{ data }}-->
   </main>
 </template>
 

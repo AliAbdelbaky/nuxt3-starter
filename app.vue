@@ -28,7 +28,6 @@ useHead({
     style: themeConfig(_lightThemeVars),
   },
 })
-
 </script>
 <template>
   <n-config-provider
