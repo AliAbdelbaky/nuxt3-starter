@@ -39,5 +39,11 @@ export default defineNuxtConfig({
         plugins: {
             'postcss-nested': {}
         }
+    },
+    app: {
+        pageTransition: {name: 'page', mode: 'out-in'},
+        head: {
+            titleTemplate: '%s - Nuxt 3 Starter Kit', title: '[TITLE PLACEHOLDER]',
+        }
     }
 })
