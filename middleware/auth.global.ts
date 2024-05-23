@@ -1,10 +1,8 @@
-import {useNuxtApp} from '#imports'
-import {callWithNuxt} from '#app/nuxt'
 
 export default defineNuxtRouteMiddleware(async (to, from) => {
     const {status} = useAuth()
     const loggedIn = status.value === 'authenticated'
-    if (process.env.NODE_ENV === 'development') {
+    if (process.env.NODE_ENV === 'development' && import.meta.client) {
         console.log({
             to,
             from,
