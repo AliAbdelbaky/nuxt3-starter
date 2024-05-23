@@ -19,7 +19,6 @@ await useFetch('/api/token', {headers}).then((res) => {
   <main class="tw-min-h-screen">
     <slot/>
     {{ user}}
-<!--    {{ data }}-->
   </main>
 </template>
 
