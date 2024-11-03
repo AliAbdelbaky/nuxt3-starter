@@ -10,26 +10,26 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@nuxtjs/i18n": "^8.3.1",
-    "@pinia/nuxt": "^0.5.1",
-    "@sidebase/nuxt-auth": "^0.7.0",
+    "@nuxtjs/i18n": "^8.5.6",
+    "@pinia/nuxt": "^0.5.5",
+    "@sidebase/nuxt-auth": "^0.7.2",
     "next-auth": "4.22.5",
-    "nuxt": "^3.11.2",
+    "nuxt": "^3.13.2",
     "nuxtjs-naive-ui": "^1.0.2",
-    "vue": "^3.4.27",
-    "vue-router": "^4.3.2"
+    "vue": "^3.5.12",
+    "vue-router": "^4.4.5"
   },
   "devDependencies": {
-    "@nuxtjs/tailwindcss": "^6.12.0",
-    "@vueuse/core": "^10.9.0",
-    "@vueuse/nuxt": "^10.9.0",
-    "dayjs": "^1.11.10",
+    "@nuxtjs/tailwindcss": "^6.12.2",
+    "@vueuse/core": "^10.11.1",
+    "@vueuse/nuxt": "^10.11.1",
+    "dayjs": "^1.11.13",
     "lodash": "^4.17.21",
     "md5": "^2.3.0",
     "moment": "^2.30.1",
-    "naive-ui": "^2.38.2",
+    "naive-ui": "^2.40.1",
     "nuxt-icon": "^0.6.10",
-    "sass": "^1.77.2",
+    "sass": "^1.80.6",
     "vfonts": "^0.0.3"
   }
 }
