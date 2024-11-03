@@ -3,13 +3,13 @@ import {
     createDiscreteApi,
     type NotificationOptions,
     type NotificationPlacement,
-    type NotificationApiInjection
+    type NotificationApi
 
 } from "naive-ui";
 
 export default function (placement?: NotificationPlacement) {
     const {theme_overrides} = useNThemeHandler()
-    const notification = ref<NotificationApiInjection | null>(null)
+    const notification = ref<NotificationApi | null>(null)
 
     const notify = (payload: NotificationOptions) => {
         notification.value?.create({
