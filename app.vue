@@ -21,7 +21,7 @@ set_lang(lang_cookie.value)
 
 const is_dev_env = computed(() => process.env.NODE_ENV === 'development')
 
-
+// console.log('sdas')
 
 useHead({
   htmlAttrs: {
