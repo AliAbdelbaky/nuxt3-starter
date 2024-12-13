@@ -1,18 +1,15 @@
 <script setup lang="ts">
-import MainComp from '~/components/dashboard/homepage.vue'
+import MainComp from '~/components/dashboard/homepage.vue';
 
 definePageMeta({
-  layout: 'dashboard'
-})
-
+  layout: 'dashboard',
+});
 </script>
 
 <template>
   <div>
-    <MainComp/>
+    <MainComp />
   </div>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
