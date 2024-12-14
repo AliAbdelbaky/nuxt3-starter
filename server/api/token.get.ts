@@ -1,5 +1,5 @@
-import {getToken} from "#auth";
+import { getToken } from '#auth';
 
-export default defineEventHandler(async event => {
-  return await getToken({event})
-})
+export default defineEventHandler(async (event) => {
+  return await getToken({ event });
+});

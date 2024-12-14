@@ -1,13 +1,9 @@
-<script setup lang="ts">
-
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <main class="tw-min-h-screen">
-    <slot/>
+    <slot />
   </main>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

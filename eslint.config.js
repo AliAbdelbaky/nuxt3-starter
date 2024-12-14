@@ -5,7 +5,7 @@ import tseslint from 'typescript-eslint';
 import pluginVue from 'eslint-plugin-vue';
 import pluginPrettier from 'eslint-plugin-prettier';
 import prettierConfig from 'eslint-config-prettier';
-import pluginNuxt from "eslint-plugin-nuxt";
+import pluginNuxt from 'eslint-plugin-nuxt';
 
 import VueRules from './.eslint.config/vueRules.js';
 
@@ -71,5 +71,14 @@ export default [
       nuxt: pluginNuxt, // Add the Nuxt plugin
     },
     rules: VueRules,
+  },
+  {
+    rules: {
+      'vue/multi-word-component-names': 'off',
+
+      // Disable other specific rules as needed
+      'no-console': 'off',
+      '@typescript-eslint/no-unused-vars': 'off',
+    },
   },
 ];
