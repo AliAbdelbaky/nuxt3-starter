@@ -6,11 +6,11 @@ module.exports = {
     preflight: false,
   },
   content: [
-    "./components/**/*.{js,vue,ts}",
-    "./layouts/**/*.vue",
-    "./pages/**/*.vue",
-    "./plugins/**/*.{js,ts}",
-    "./nuxt.config.{js,ts}",
+    './components/**/*.{js,vue,ts}',
+    './layouts/**/*.vue',
+    './pages/**/*.vue',
+    './plugins/**/*.{js,ts}',
+    './nuxt.config.{js,ts}',
   ],
   theme: {
     extend: {
@@ -39,21 +39,21 @@ module.exports = {
         },
       },
       fontSize: {
-        'base': 'var(--font-size-base)',
-        'sm': 'var(--font-size-sm)',
-        'md': 'var(--font-size-md)',
-        'lg': 'var(--font-size-lg)',
-        'xl': 'var(--font-size-xlg)',
+        base: 'var(--font-size-base)',
+        sm: 'var(--font-size-sm)',
+        md: 'var(--font-size-md)',
+        lg: 'var(--font-size-lg)',
+        xl: 'var(--font-size-xlg)',
       },
       backgroundColor: {
-        'base': 'var(--background-base)',
-        'primary': 'var(--primary-base)',
-        'secondary': 'var(--background-sec)',
-        'third': 'var(--background-third)',
+        base: 'var(--background-base)',
+        primary: 'var(--primary-base)',
+        secondary: 'var(--background-sec)',
+        third: 'var(--background-third)',
       },
       borderRadius: {
-        'base': 'var(--border-radius-base)',
-      }
+        base: 'var(--border-radius-base)',
+      },
     },
     container: {
       center: true,
@@ -67,4 +67,4 @@ module.exports = {
       },
     },
   },
-}
+};

@@ -1,5 +1,5 @@
 export default defineEventHandler(() => {
   return {
-    service: 'online'
-  }
-})
+    service: 'online',
+  };
+});
